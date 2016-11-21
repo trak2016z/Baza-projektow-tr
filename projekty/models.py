@@ -46,7 +46,7 @@ class AuthUser(models.Model):
     username = models.CharField(unique=True, max_length=150)
     first_name = models.CharField(max_length=30)
     last_name = models.CharField(max_length=30)
-    email = models.CharField(max_length=254)
+    email = models.CharField(unique=True, max_length=254)
     is_staff = models.IntegerField()
     is_active = models.IntegerField()
     date_joined = models.DateTimeField()
@@ -78,6 +78,10 @@ class AuthUserUserPermissions(models.Model):
 
 class Cathegory(models.Model):
     text = models.CharField(unique=True, max_length=60)
+    photo_url = models.CharField(max_length=300)
+
+    def __str__(self):
+        return self.text
 
     class Meta:
         managed = False

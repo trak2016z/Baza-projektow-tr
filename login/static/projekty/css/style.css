@@ -1,0 +1,49 @@
+html {
+    height:100%;
+}
+
+/*body {*/
+    /*min-height: 100% !important;*/
+    /*height: 100%;*/
+/*}*/
+
+.navlink {
+    margin-right: 30px;
+}
+
+.mainphotocontainer {
+    width: 100%;
+    min-height: 550px;
+    max-height: 800px;
+    height: 50%;
+    padding-right: 5%;
+    padding-left: 5%;
+}
+
+.mainphoto {
+    background-image: url("/static/login/assets/img/backgrounds/2.jpeg");
+    background-size: 100%;
+    background-repeat: no-repeat;
+    min-height: inherit;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.mainsearch {
+    color: white;
+    width: 20%;
+    margin: 0 auto;
+    font-size: large;
+}
+
+.thumbnail .cathegory-img {
+    height: 200px;
+    width: 100%;
+    max-width: 400px;
+    display: block;
+}
+
+.panel-default{
+
+}
