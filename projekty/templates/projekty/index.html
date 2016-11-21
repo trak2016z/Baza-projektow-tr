@@ -16,10 +16,18 @@
 
 <nav class="navbar navbar-default">
     <div class="container-fluid">
-        <p class="navbar-text"><a href="/#">Dodaj</a></p>
+        <p class="navbar-text"><a href="/addproject">Dodaj</a></p>
         <p class="navbar-text"><a href="#kategorie">Kategorie</a></p>
-        <p class="navbar-text navbar-right"><a href="/login" class="navlink">Logowanie / rejestracja</a></p>
-        <p class="navbar-text navbar-right"><a href="/#">Moje konto</a></p>
+
+        {% if request.user.is_authenticated %}
+            <p class="navbar-text navbar-right"><a href="/login/userlogout" class="navlink">Wyloguj</a></p>
+            <p class="navbar-text navbar-right"><a href="/#">Moje konto</a></p>
+        {% else %}
+            <p class="navbar-text navbar-right"><a href="/login" class="navlink">Logowanie / rejestracja</a></p>
+        {% endif %}
+
+
+
         {#            <div class="navbar-header">#}
         {#            </div>#}
     </div>
@@ -37,25 +45,26 @@
 <div class="container">
 
     <div class="jumbotron">
-        <h1>Baza projektów</h1>
+        <h1>Projekty</h1>
         <p>Strona z projektami z różnych dziedzin</p>
-{#        <p><a class="btn btn-primary btn-lg" href="#" role="button">Przeglądaj kategorie</a></p>#}
+        {#        <p><a class="btn btn-primary btn-lg" href="#" role="button">Przeglądaj kategorie</a></p>#}
     </div>
 
 
     <div class="col-md-12">
         <div class="panel panel-default">
-                <div class="panel-body">
-                    <h2 id="kategorie">Kategorie</h2>
+            <div class="panel-body">
+                <h2 id="kategorie">Kategorie</h2>
                 <br>
                 {% if cathegories %}
                     {% for cat in cathegories %}
                         <div class="col-md-4">
                             <div class="thumbnail">
-                                    <img src="{{ cat.photo_url }}"  class="cathegory-img">
-                            <div class="caption">
-                                <h3>{{ cat.text }}</h3>
-                            </div>
+                                <img src="{{ cat.photo_url }}" class="cathegory-img">
+                                <div class="caption">
+                                    <h3>{{ cat.text }}</h3>
+                                    <p>{{ cat.short_desc }}</p>
+                                </div>
                             </div>
                         </div>
                     {% endfor %}
@@ -69,7 +78,15 @@
             <div class="panel-heading">Ostatnio dodane</div>
 
             <div class="panel-body">
-                dsd
+
+{#                <div class="project">#}
+{#                    <div class="projectPhoto">projectPhoto</div>#}
+{#                    <div class="projectDesc">#}
+{#                        <div class="projectTitle">projectTitle</div>#}
+{#                        <div class="projectDescText">projectDescText</div>#}
+{#                    </div>#}
+{#                </div>#}
+
             </div>
         </div>
     </div>
@@ -80,7 +97,6 @@
             <div class="panel-heading">Najpopularniejsze projekty</div>
 
             <div class="panel-body">
-                dsd
             </div>
         </div>
     </div>
@@ -93,6 +109,18 @@
     {##}
     {#        </div>#}
 </div>
+
+
+<script src="{% static 'login/assets/js/jquery-1.11.1.min.js' %}"></script>
+<script src="{% static 'login/assets/bootstrap/js/bootstrap.min.js' %}"></script>
+<script src="{% static 'login/assets/js/jquery.backstretch.min.js' %}"></script>
+
+{#<script>#}
+{##}
+{#    jQuery(document).ready(function () {#}
+{#        $.backstretch("{% static 'login/assets/img/backgrounds/bg.jpg' %}");#}
+{#    });#}
+{#</script>#}
 
 </body>
 </html>

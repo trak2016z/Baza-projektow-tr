@@ -2,6 +2,10 @@ html {
     height:100%;
 }
 
+body {
+    background-color: #eeebeb;
+}
+
 /*body {*/
     /*min-height: 100% !important;*/
     /*height: 100%;*/
@@ -46,4 +50,56 @@ html {
 
 .panel-default{
 
+}
+
+.navbar{
+    border-color: transparent;
+    background-color: rgba(50, 102, 156, 0.81);
+}
+
+.navbar a{
+    color: #f8f8f8;
+}
+
+.jumbotron {
+    background-color: rgba(50, 102, 156, 0.81);
+    color: #f8f8f8;
+}
+
+.jumbotron .btn{
+    background-color: #6da87d;
+}
+
+/* na strone glowna */
+.project {
+	height: 170px;
+	width:100%;
+}
+
+.projectPhoto {
+	background: #22bb99;
+	height: 100%;
+	width:180px;
+	float:left;
+}
+
+.projectDesc {
+	background:#ffffcc;
+	width:70%;
+	height:100%;
+
+	position:relative;
+	display: inline-block;
+}
+
+.projectTitle {
+	background: #cc4466;
+	width:100%;
+	height:22%;
+}
+
+.projectDescText {
+	background: #3344ff;
+	width:100%;
+	height:78%;
 }

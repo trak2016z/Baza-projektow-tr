@@ -79,6 +79,7 @@ class AuthUserUserPermissions(models.Model):
 class Cathegory(models.Model):
     text = models.CharField(unique=True, max_length=60)
     photo_url = models.CharField(max_length=300)
+    short_desc = models.CharField(max_length=180)
 
     def __str__(self):
         return self.text

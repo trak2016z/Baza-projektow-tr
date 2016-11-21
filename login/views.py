@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-from django.contrib.auth import authenticate
-from django.shortcuts import render
+from django.contrib.auth import authenticate, logout, login
+from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from projekty.models import AuthUser
 from django.http import HttpResponse
@@ -19,7 +19,8 @@ def userlogin(request):
     user = authenticate(username=u_name, password = u_pass)
 
     if user is not None:
-        return HttpResponse("Zalogowano")
+        login(request, user)
+        return redirect('projekty:index')
     else:
         return HttpResponse("Nie zalogowano")
 
@@ -46,6 +47,13 @@ def register(request):
                     user.first_name = firstname
                     user.last_name = lastname
                     user.save()
-                    return HttpResponse("Zarejestrowano")
+                    return redirect('index')
+
+    else:
+        return HttpResponse("hasla sie nie zgadzaja")
 
     return HttpResponse("Nie zarejestrowano")
+
+def userlogout(request):
+    logout(request)
+    return redirect('projekty:index')
