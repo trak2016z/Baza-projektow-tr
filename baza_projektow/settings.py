@@ -32,14 +32,16 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'projekty.apps.BazaProjConfig',
-    'login.apps.LoginConfig',
+    # 'projekty.apps.BazaProjConfig',
+    # 'login.apps.LoginConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'projekty',
+    'login',
 ]
 
 MIDDLEWARE = [

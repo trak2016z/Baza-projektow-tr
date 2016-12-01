@@ -15,30 +15,45 @@ body {
     margin-right: 30px;
 }
 
+
 .mainphotocontainer {
     width: 100%;
-    min-height: 550px;
-    max-height: 800px;
-    height: 50%;
-    padding-right: 5%;
-    padding-left: 5%;
+    height: 380px;
+    /*margin-top: -20px;*/
+    /*padding-right: 5%;*/
+    /*padding-left: 5%;*/
 }
 
 .mainphoto {
     background-image: url("/static/login/assets/img/backgrounds/2.jpeg");
     background-size: 100%;
     background-repeat: no-repeat;
-    min-height: inherit;
+    height: inherit;
     width: 100%;
-    display: flex;
-    align-items: center;
+    position: relative;
 }
 
 .mainsearch {
     color: white;
-    width: 20%;
-    margin: 0 auto;
-    font-size: large;
+    width: 100%;
+    height: 100px;
+    position: absolute;
+    top:35%;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 42px;
+
+}
+
+.search-text {
+    position: relative;
+    left: 40%;
+    float: left;
+}
+
+.search-form {
+    position: relative;
+    float: left;
+    display: inline;
 }
 
 .thumbnail .cathegory-img {
@@ -54,7 +69,10 @@ body {
 
 .navbar{
     border-color: transparent;
-    background-color: rgba(50, 102, 156, 0.81);
+    /*background-color: rgba(50, 102, 156, 0.81);*/
+    background-color: #122b40;
+    margin: 0;
+    padding: 0;
 }
 
 .navbar a{
@@ -71,35 +89,75 @@ body {
 }
 
 /* na strone glowna */
-.project {
-	height: 170px;
+.projectContainer {
+	height: 20%;
+	max-height: 250px;
 	width:100%;
+}
+
+.project {
+    position: relative;
+	height: 150px;
+	max-width: 550px;
+	min-width: 320px;
+    margin-bottom: 10px;
 }
 
 .projectPhoto {
-	background: #22bb99;
-	height: 100%;
-	width:180px;
 	float:left;
+	position:relative;
+	background: #3D5AFE;
+	height: 100%;
+	width: 30%;
 }
 
-.projectDesc {
-	background:#ffffcc;
+.projectPhoto img {
+    width: 100%;
+    height: 100%;
+}
+
+.projectInfo {
+	background:#E1F5FE;
+	float:left;
 	width:70%;
 	height:100%;
-
-	position:relative;
-	display: inline-block;
+	overflow: hidden;
 }
 
 .projectTitle {
-	background: #cc4466;
-	width:100%;
-	height:22%;
+    display: inline-block;
+    background: #90CAF9;
+    width: 100%;
+    height: 22%;
 }
 
-.projectDescText {
-	background: #3344ff;
+.projectShortDesc {
 	width:100%;
-	height:78%;
+	position: relative;
 }
+
+.descTitle {
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-weight: bold;
+    height: auto;
+    position: relative;
+    top: 25%;
+    padding-left: 12px;
+}
+
+.descShortText {
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-size: 14px;
+    position: relative;
+	overflow: hidden;
+	margin: 6px;
+	margin-left: 12px;
+}
+
+.projectCathegory {
+    /*float: right;*/
+    position: absolute;
+    bottom: 5px;
+    right: 10px;
+}
+

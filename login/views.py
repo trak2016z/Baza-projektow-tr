@@ -3,7 +3,7 @@ from django.contrib.auth import authenticate, logout, login
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from projekty.models import AuthUser
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 
 
 def index(request):
@@ -20,7 +20,7 @@ def userlogin(request):
 
     if user is not None:
         login(request, user)
-        return redirect('projekty:index')
+        return redirect('index')
     else:
         return HttpResponse("Nie zalogowano")
 
@@ -56,4 +56,4 @@ def register(request):
 
 def userlogout(request):
     logout(request)
-    return redirect('projekty:index')
+    return redirect('index')

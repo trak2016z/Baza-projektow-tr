@@ -68,7 +68,7 @@
                             </div>
                         </div>
                         <div class="form-bottom">
-                            <form role="form" action="{% url 'login:userlogin' %}" method="post" class="login-form">
+                            <form role="form" action="{% url 'userlogin' %}" method="post" class="login-form">
                                 {% csrf_token %}
                                 <div class="form-group">
                                     <label class="sr-only" for="form-username">Login</label>
@@ -119,7 +119,7 @@
                         </div>
 
                         <div class="form-bottom">
-                            <form role="form" action="{% url 'login:register' %}" method="post" class="registration-form">
+                            <form role="form" action="{% url 'register' %}" method="post" class="registration-form">
                                 {% csrf_token %}
                                 <div class="form-group">
                                     <label class="sr-only" for="username">Nazwa użytkownika</label>

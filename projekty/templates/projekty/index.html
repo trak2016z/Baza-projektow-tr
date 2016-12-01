@@ -16,39 +16,45 @@
 
 <nav class="navbar navbar-default">
     <div class="container-fluid">
-        <p class="navbar-text"><a href="/addproject">Dodaj</a></p>
+        <p class="navbar-text"><a href="{% url 'addproject' %}">Dodaj</a></p>
         <p class="navbar-text"><a href="#kategorie">Kategorie</a></p>
 
-        {% if request.user.is_authenticated %}
-            <p class="navbar-text navbar-right"><a href="/login/userlogout" class="navlink">Wyloguj</a></p>
+        {% if user.is_authenticated %}
+            <p class="navbar-text navbar-right"><a href="{% url 'userlogout' %}" class="navlink">Wyloguj</a></p>
             <p class="navbar-text navbar-right"><a href="/#">Moje konto</a></p>
         {% else %}
-            <p class="navbar-text navbar-right"><a href="/login" class="navlink">Logowanie / rejestracja</a></p>
+            <p class="navbar-text navbar-right"><a href="{% url 'loginindex' %}" class="navlink">Logowanie / rejestracja</a></p>
         {% endif %}
 
-
-
-        {#            <div class="navbar-header">#}
-        {#            </div>#}
+        <div class="navbar-header">
+        </div>
     </div>
 </nav>
 
 
-{#        <div class="mainphotocontainer">#}
-{#            <div class="mainphoto">#}
-{#                <div class="mainsearch">#}
-{#                    Szukaj#}
-{#                </div>#}
-{#            </div>#}
-{##}
-{#        </div>#}
+<div class="mainphotocontainer">
+    <div class="mainphoto">
+        <div class="mainsearch">
+            <div class="search-text">
+                Szukaj
+            </div>
+            <div class="search-form">
+                <form action="">
+                    <input type="text" id="txt">
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 <div class="container">
 
-    <div class="jumbotron">
-        <h1>Projekty</h1>
-        <p>Strona z projektami z różnych dziedzin</p>
-        {#        <p><a class="btn btn-primary btn-lg" href="#" role="button">Przeglądaj kategorie</a></p>#}
-    </div>
+    {#    <div class="jumbotron">#}
+    {#        <h1>Projekty</h1>#}
+    {#        <p>Strona z projektami z różnych dziedzin</p>#}
+    {#        <p><a class="btn btn-primary btn-lg" href="#" role="button">Przeglądaj kategorie</a></p>#}
+    {#    </div>#}
 
 
     <div class="col-md-12">
@@ -79,13 +85,33 @@
 
             <div class="panel-body">
 
-{#                <div class="project">#}
-{#                    <div class="projectPhoto">projectPhoto</div>#}
-{#                    <div class="projectDesc">#}
-{#                        <div class="projectTitle">projectTitle</div>#}
-{#                        <div class="projectDescText">projectDescText</div>#}
-{#                    </div>#}
-{#                </div>#}
+                {% if latest_projects_list %}
+                    {% for project in latest_projects_list %}
+                        <div class="projectContainer">
+                            <div class="project">
+                                <div class="projectPhoto">
+                                    <img src="http://www.shutterstock.com/blog/wp-content/uploads/sites/5/2012/02/img9.jpg"/>
+                                </div>
+                                <div class="projectInfo">
+                                    <div class="projectTitle">
+                                        <div class="descTitle">
+                                            {{ project.title }}
+                                        </div>
+                                    </div>
+                                    <div class="projectShortDesc">
+                                        <div class="descShortText">
+                                            {{ project.short_description }}
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="projectCathegory">
+                                    Kategoria
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% endif %}
 
             </div>
         </div>

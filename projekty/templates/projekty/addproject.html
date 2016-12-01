@@ -1,0 +1,40 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dodaj projekt</title>
+
+    <link rel="stylesheet" href="{% static 'login/assets/css/fonts.css' %}">
+    <link rel="stylesheet" href="{% static 'login/assets/bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'login/assets/font-awesome/css/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="{% static 'login/assets/font-awesome/css/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="{% static 'projekty/css/style.css' %}">
+</head>
+<body>
+
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <p class="navbar-text"><a href="/addproject">Dodaj</a></p>
+        <p class="navbar-text"><a href="#kategorie">Kategorie</a></p>
+
+        {% if user.is_authenticated %}
+            <p class="navbar-text navbar-right"><a href="/login/userlogout" class="navlink">Wyloguj</a></p>
+            <p class="navbar-text navbar-right"><a href="/#">Moje konto</a></p>
+        {% else %}
+            <p class="navbar-text navbar-right"><a href="/login" class="navlink">Logowanie / rejestracja</a></p>
+        {% endif %}
+
+
+
+        <div class="navbar-header">
+        </div>
+    </div>
+</nav>
+
+<script src="{% static 'login/assets/js/jquery-1.11.1.min.js' %}"></script>
+<script src="{% static 'login/assets/bootstrap/js/bootstrap.min.js' %}"></script>
+<script src="{% static 'login/assets/js/jquery.backstretch.min.js' %}"></script>
+
+</body>
+</html>
