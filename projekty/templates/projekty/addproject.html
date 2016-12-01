@@ -1,40 +1,64 @@
+{% extends 'projekty/main.html' %}
 {% load staticfiles %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Dodaj projekt</title>
 
-    <link rel="stylesheet" href="{% static 'login/assets/css/fonts.css' %}">
-    <link rel="stylesheet" href="{% static 'login/assets/bootstrap/css/bootstrap.min.css' %}">
-    <link rel="stylesheet" href="{% static 'login/assets/font-awesome/css/font-awesome.min.css' %}">
-    <link rel="stylesheet" href="{% static 'login/assets/font-awesome/css/font-awesome.min.css' %}">
-    <link rel="stylesheet" href="{% static 'projekty/css/style.css' %}">
-</head>
-<body>
-
-<nav class="navbar navbar-default">
-    <div class="container-fluid">
-        <p class="navbar-text"><a href="/addproject">Dodaj</a></p>
-        <p class="navbar-text"><a href="#kategorie">Kategorie</a></p>
-
-        {% if user.is_authenticated %}
-            <p class="navbar-text navbar-right"><a href="/login/userlogout" class="navlink">Wyloguj</a></p>
-            <p class="navbar-text navbar-right"><a href="/#">Moje konto</a></p>
-        {% else %}
-            <p class="navbar-text navbar-right"><a href="/login" class="navlink">Logowanie / rejestracja</a></p>
-        {% endif %}
+{% block title %}
+    Dodaj projekt
+{% endblock %}
 
 
+{% block container %}
+    <div class="container">
 
-        <div class="navbar-header">
+        <h2>Dodaj projekt</h2>
+            <div class="col-md-8 project-add-form">
+                <form class="form">
+                    <div class="form-group">
+                        <label for="project-title">Tytuł projektu</label>
+                        <input type="text" class="form-control" name="project-title" id="project-title" placeholder="Tytuł projektu">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="project-cathegory">Kategoria</label>
+                        <select class="select-cathegory" name="project-cathegory" id="project-cathegory">
+                            {% if cathegories %}
+                                {% for cat in cathegories %}
+                                    <option value="{{ cat.id }}">{{ cat.text }}</option>
+                                {% endfor %}
+                            {% endif %}
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="project-short-desc">Krótki opis projektu</label>
+                        <input type="text" class="form-control" name="project-short-desc" id="project-short-desc" placeholder="Krótki opis projektu">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="project-text">Treść projektu</label>
+                        <textarea class="form-control" name="project-text" id="project-text" rows="18"></textarea>
+                    </div>
+
+                    <div id="component-list" class="form-group">
+                        <label for="component">Elementy wykorzystane w projekcie</label>
+
+                        <button type="button" class="btn btn-sm btn-success btn-add-component" id="btndodaj" onclick='addInput("component-list")'>Dodaj</button>
+
+                        <input type="text" class="form-control input-separated" name="components[]" id="component">
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="project-tags">Tagi</label>
+                        <input type="text" class="form-control" name="project-tags" id="project-tags" placeholder="Tagi">
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Dodaj projekt</button>
+                </form>
+
         </div>
     </div>
-</nav>
 
-<script src="{% static 'login/assets/js/jquery-1.11.1.min.js' %}"></script>
-<script src="{% static 'login/assets/bootstrap/js/bootstrap.min.js' %}"></script>
-<script src="{% static 'login/assets/js/jquery.backstretch.min.js' %}"></script>
 
-</body>
-</html>
+<script src="{% static 'login/assets/js/addproject.js' %}"></script>
+
+{% endblock %}

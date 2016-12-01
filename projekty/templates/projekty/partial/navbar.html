@@ -1,0 +1,17 @@
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <p class="navbar-text"><a href="{% url 'index' %}">Strona główna</a></p>
+        <p class="navbar-text"><a href="{% url 'addproject' %}">Dodaj projekt</a></p>
+        <p class="navbar-text"><a href="#kategorie">Kategorie</a></p>
+
+        {% if user.is_authenticated %}
+            <p class="navbar-text navbar-right"><a href="{% url 'userlogout' %}" class="navlink">Wyloguj</a></p>
+            <p class="navbar-text navbar-right"><a href="/#">Moje konto</a></p>
+        {% else %}
+            <p class="navbar-text navbar-right"><a href="{% url 'loginindex' %}" class="navlink">Logowanie / rejestracja</a></p>
+        {% endif %}
+
+        <div class="navbar-header">
+        </div>
+    </div>
+</nav>

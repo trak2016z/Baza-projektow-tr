@@ -1,0 +1,27 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>
+        {% block title %}
+        {% endblock %}
+    </title>
+
+    {% include 'projekty/partial/cssfiles.html' %}
+
+</head>
+<body>
+
+{% include 'projekty/partial/navbar.html' %}
+
+{% block precontainer %}
+{% endblock %}
+
+{% block container %}
+{% endblock %}
+
+{% include 'projekty/partial/jsfiles.html' %}
+
+</body>
+</html>

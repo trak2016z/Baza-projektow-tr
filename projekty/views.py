@@ -19,10 +19,12 @@ def index(request):
     return HttpResponse(template.render(context, request))
 
 def addproject(request):
-    # if(not request.user.is_authenticated()):
-    #     return redirect('login:index')
-    # else:
-    #     template = loader.get_template('addproject.html')
+    cathegories = Cathegory.objects.all()
 
-        # return HttpResponse(template.render(request))
-    return render(request, 'projekty/addproject.html')
+    context = {
+        'cathegories': cathegories,
+    }
+
+    template = loader.get_template('projekty/addproject.html')
+
+    return HttpResponse(template.render(context, request))
