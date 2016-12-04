@@ -1,0 +1,22 @@
+{% extends 'projekty/main.html' %}
+
+{% block container %}
+
+<h2>{{ error }}</h2>
+
+<p>  {{ title }}   </p>
+<p>  {{ cathegory }}   </p>
+<p>  {{ shortdesc }}   </p>
+<p>  {{ text }}   </p>
+
+{% for comp in components %}
+    <p>{{ comp }}</p>
+{% endfor %}
+{% for compQ in componentQnt %}
+    <p>{{ compQ }}</p>
+{% endfor %}
+
+
+<p>  {{ tags }}   </p>
+
+{% endblock %}

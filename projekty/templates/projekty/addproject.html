@@ -10,55 +10,62 @@
     <div class="container">
 
         <h2>Dodaj projekt</h2>
-            <div class="col-md-8 project-add-form">
-                <form class="form">
-                    <div class="form-group">
-                        <label for="project-title">Tytuł projektu</label>
-                        <input type="text" class="form-control" name="project-title" id="project-title" placeholder="Tytuł projektu">
+        <div class="col-md-8 project-add-form">
+            <form class="form" action="{% url 'postproject' %}" method="post">
+            {% csrf_token %}
+                <div class="form-group">
+                    <label for="project-title">Tytuł projektu</label>
+                    <input type="text" class="form-control" name="project-title" id="project-title"
+                           placeholder="Tytuł projektu" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="project-cathegory">Kategoria</label>
+                    <select class="select-cathegory" name="project-cathegory" id="project-cathegory">
+                        {% if cathegories %}
+                            {% for cat in cathegories %}
+                                <option value="{{ cat.id }}">{{ cat.text }}</option>
+                            {% endfor %}
+                        {% endif %}
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="project-short-desc">Krótki opis projektu</label>
+                    <input type="text" class="form-control" name="project-short-desc" id="project-short-desc"
+                           placeholder="Krótki opis projektu" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="project-text">Treść projektu</label>
+                    <textarea class="form-control" name="project-text" id="project-text" rows="18" required></textarea>
+                </div>
+
+
+                <div id="component-list" class="form-group">
+                    <label for="component">Elementy wykorzystane w projekcie</label>
+                    <button type="button" class="btn btn-sm btn-success btn-add-component" id="btndodaj"
+                            onclick='addInput("componentContainer")'>Dodaj
+                    </button>
+
+                    <div class="row input-separated">
+                        <div id="componentContainer"></div>
                     </div>
-
-                    <div class="form-group">
-                        <label for="project-cathegory">Kategoria</label>
-                        <select class="select-cathegory" name="project-cathegory" id="project-cathegory">
-                            {% if cathegories %}
-                                {% for cat in cathegories %}
-                                    <option value="{{ cat.id }}">{{ cat.text }}</option>
-                                {% endfor %}
-                            {% endif %}
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="project-short-desc">Krótki opis projektu</label>
-                        <input type="text" class="form-control" name="project-short-desc" id="project-short-desc" placeholder="Krótki opis projektu">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="project-text">Treść projektu</label>
-                        <textarea class="form-control" name="project-text" id="project-text" rows="18"></textarea>
-                    </div>
-
-                    <div id="component-list" class="form-group">
-                        <label for="component">Elementy wykorzystane w projekcie</label>
-
-                        <button type="button" class="btn btn-sm btn-success btn-add-component" id="btndodaj" onclick='addInput("component-list")'>Dodaj</button>
-
-                        <input type="text" class="form-control input-separated" name="components[]" id="component">
-                    </div>
+                </div>
 
 
-                    <div class="form-group">
-                        <label for="project-tags">Tagi</label>
-                        <input type="text" class="form-control" name="project-tags" id="project-tags" placeholder="Tagi">
-                    </div>
+                <div class="form-group input-separated">
+                    <label for="project-tags">Tagi</label>
+                    <input type="text" class="form-control" name="project-tags" id="project-tags" placeholder="Tagi">
+                </div>
 
-                    <button type="submit" class="btn btn-primary">Dodaj projekt</button>
-                </form>
+                <button type="submit" class="btn btn-primary">Dodaj projekt</button>
+            </form>
 
         </div>
     </div>
 
 
-<script src="{% static 'login/assets/js/addproject.js' %}"></script>
+    <script src="{% static 'login/assets/js/addproject.js' %}"></script>
 
 {% endblock %}

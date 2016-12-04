@@ -184,7 +184,7 @@ textarea {
 }
 
 .input-separated {
-    margin-top: 5px;
+    margin-top: 10px;
     margin-bottom: 5px;
 }
 
@@ -192,4 +192,27 @@ textarea {
     position: relative;
     float: right;
     margin-bottom: 6px;
+}
+
+.components {
+    margin-top: 12px;
+}
+
+.componentContainer {
+    width: 100%;
+}
+
+.componentName {
+    display: inline;
+    width: 60%;
+}
+
+.componentContainer {
+    display: inline;
+    width:40%;
+}
+
+.componentRow {
+    margin-top: 3px;
+    margin-bottom: 3px;
 }

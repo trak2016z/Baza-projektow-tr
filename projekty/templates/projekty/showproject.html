@@ -1,0 +1,38 @@
+{% extends 'projekty/main.html' %}
+{% load staticfiles %}
+
+{% block title %}
+    {% if project_title %}
+        {{ project_title }}
+    {% endif %}
+{% endblock %}
+
+{% block container %}
+
+    <div class="container">
+        <h2>    {% if project_title %}
+            {{ project_title }}
+        {% endif %}</h2>
+        <div class="col-md-8 project-add-form">
+
+            <h4><strong>{{ project_short_desc }}</strong></h4>
+
+            <div class="project-text">
+                {% if project_text %}
+                    {{ project_text }}
+                {% endif %}
+            </div>
+
+            <div class="project-components">
+                {% if components %}
+                    {% for component in components %}
+                        {{ component.description }} - {{ component.quantity }}
+                    {% endfor %}
+                {% endif %}
+            </div>
+
+        </div>
+    </div>
+
+
+{% endblock %}
