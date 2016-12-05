@@ -82,7 +82,7 @@ class Cathegory(models.Model):
     short_desc = models.CharField(max_length=180)
 
     def __str__(self):
-        return self.text
+        return self.text.encode('utf-8')
 
     class Meta:
         managed = False

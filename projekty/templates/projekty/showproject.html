@@ -10,28 +10,51 @@
 {% block container %}
 
     <div class="container">
-        <h2>    {% if project_title %}
-            {{ project_title }}
-        {% endif %}</h2>
-        <div class="col-md-8 project-add-form">
+        <h2>
+            {% if project_title %}
+                {{ project_title }}
+            {% endif %}
+        </h2>
+        <p><span class="glyphicon glyphicon-tags" aria-hidden="true"></span>
+            Tagi:
+            {% if tags %}
+                <span class="tags">
+                    {% for tag in tags %}
+                        {{ tag.text }}
+                    {% endfor %}
+                </span>
+            {% endif %}
+        </p>
+        <div class="col-md-8 panel-bordered project-preview">
 
             <h4><strong>{{ project_short_desc }}</strong></h4>
 
             <div class="project-text">
                 {% if project_text %}
-                    {{ project_text }}
-                {% endif %}
-            </div>
-
-            <div class="project-components">
-                {% if components %}
-                    {% for component in components %}
-                        {{ component.description }} - {{ component.quantity }}
-                    {% endfor %}
+                    {% autoescape off %}
+                        {{ project_text|linebreaks }}
+                    {% endautoescape %}
                 {% endif %}
             </div>
 
         </div>
+
+        <div class="col-md-4">
+            <div class="panel panel-info">
+                <div class="panel-heading"><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span> Elementy użyte w projekcie</div>
+
+                <div class="panel-body used-parts">
+                    {% if components %}
+                        {% for component in components %}
+                            <div class="part">
+                                <span class="glyphicon glyphicon-hand-right" aria-hidden="true"></span>    {{ component.description }} - <b>&times;{{ component.quantity }}</b>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
     </div>
 
 

@@ -1,10 +1,11 @@
 {% extends 'projekty/main.html' %}
+{% load staticfiles %}
 
 {% block title %}
 {% endblock %}
 
 {% block precontainer %}
-    <div class="mainphotocontainer">
+    <div class="mainphotocontainer" xmlns="http://www.w3.org/1999/html">
         <div class="mainphoto">
             <div class="mainsearch">
                 <div class="search-text">
@@ -12,7 +13,7 @@
                 </div>
                 <div class="search-form">
                     <form action="">
-                        <input type="text" id="txt">
+                        <input type="text" id="txtSearch">
                     </form>
                 </div>
             </div>
@@ -46,36 +47,37 @@
         </div>
 
         <div class="col-md-6">
-            <div class="panel panel-info">
+            <div class="panel panel-info panel-latest-projects">
                 <div class="panel-heading">Ostatnio dodane</div>
 
                 <div class="panel-body">
-
                     {% if latest_projects_list %}
                         {% for project in latest_projects_list %}
-                            <div class="projectContainer">
-                                <div class="project">
-                                    <div class="projectPhoto">
-                                        <img src="http://www.shutterstock.com/blog/wp-content/uploads/sites/5/2012/02/img9.jpg"/>
-                                    </div>
-                                    <div class="projectInfo">
-                                        <div class="projectTitle">
-                                            <div class="descTitle">
-                                                {{ project.title }}
+                            <a href="{% url 'showproject' project.id %}">
+                                <div class="projectContainer">
+                                    <div class="project">
+                                        <div class="projectPhoto">
+                                            <img src="{% static 'login/assets/img/backgrounds/no_image.png' %}"/>
+                                        </div>
+                                        <div class="projectInfo">
+                                            <div class="projectTitle">
+                                                <div class="descTitle">
+                                                    {{ project.title }}
+                                                </div>
+                                            </div>
+                                            <div class="projectShortDesc">
+                                                <div class="descShortText">
+                                                    {{ project.short_description }}
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="projectShortDesc">
-                                            <div class="descShortText">
-                                                {{ project.short_description }}
-                                            </div>
-                                        </div>
-                                    </div>
 
-                                    <div class="projectCathegory">
-                                        {{ project.cathegory }}
+                                        <div class="projectCathegory">
+                                            {{ project.cathegory }}
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                            </a>
                         {% endfor %}
                     {% endif %}
 

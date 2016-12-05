@@ -41,19 +41,29 @@ body {
     top:35%;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 42px;
-
+    text-align: center;
 }
 
 .search-text {
     position: relative;
-    left: 40%;
-    float: left;
+    display: inline-block;
 }
 
 .search-form {
     position: relative;
-    float: left;
-    display: inline;
+    display: inline-block;
+}
+
+#txtSearch {
+    border: 2px solid;
+    border-radius: 2px;
+    background: rgba(249, 247, 242, 0.16);
+    text-align: center;
+}
+
+a {
+    text-decoration: none;
+    color: #333333;
 }
 
 .thumbnail .cathegory-img {
@@ -97,16 +107,26 @@ body {
 
 .project {
     position: relative;
+    border: 1px solid;
+    border-color: rgba(50, 102, 156, 0.81);
 	height: 150px;
 	max-width: 550px;
 	min-width: 320px;
     margin-bottom: 10px;
 }
 
+.project-small {
+    position: relative;
+    border: 1px solid;
+    border-color: rgba(50, 102, 156, 0.81);
+	height: 150px;
+    margin-bottom: 10px;
+}
+
 .projectPhoto {
 	float:left;
 	position:relative;
-	background: #3D5AFE;
+	background: #e5e3e6;
 	height: 100%;
 	width: 30%;
 }
@@ -117,7 +137,7 @@ body {
 }
 
 .projectInfo {
-	background:#E1F5FE;
+	background:#FDFDFD;
 	float:left;
 	width:70%;
 	height:100%;
@@ -169,6 +189,38 @@ body {
     border-radius: 5px;
 }
 
+.panel-bordered {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    border: 1px solid;
+    border-color: #CACACA;
+    border-radius: 5px;
+}
+
+.project-components {
+    padding-left: 12px;
+    padding-right: 12px;
+}
+
+.project-preview {
+    background-color: whitesmoke;
+}
+
+.project-preview img {
+    max-width: 95%;
+}
+
+.projectInnerPhoto {
+    display: inline-block;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.project-text {
+    margin-top: 18px;
+    margin-bottom: 18px;
+}
+
 .select-cathegory {
     padding: 6px;
     display: block;
@@ -215,4 +267,39 @@ textarea {
 .componentRow {
     margin-top: 3px;
     margin-bottom: 3px;
+}
+
+.panel-latest-projects {
+    min-width: 480px;
+}
+
+.panel-latest-projects-small {
+
+}
+
+.panel-body-small {
+    padding: 10px;
+    background-color: #f8f5f5
+}
+
+.used-parts {
+    font-size: 16px;
+}
+
+
+.part {
+    display: inline-block;
+    width: 100%;
+    margin-top: 6px;
+    margin-bottom: 6px;
+}
+
+.tags {
+    position: relative;
+    display: inline;
+    color: #2b669a;
+}
+
+.glyphicon{
+    margin-right: 3px;
 }

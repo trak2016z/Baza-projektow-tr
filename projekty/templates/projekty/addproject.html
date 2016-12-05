@@ -14,13 +14,13 @@
             <form class="form" action="{% url 'postproject' %}" method="post">
             {% csrf_token %}
                 <div class="form-group">
-                    <label for="project-title">Tytuł projektu</label>
+                    <label for="project-title"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Tytuł projektu</label>
                     <input type="text" class="form-control" name="project-title" id="project-title"
                            placeholder="Tytuł projektu" required>
                 </div>
 
                 <div class="form-group">
-                    <label for="project-cathegory">Kategoria</label>
+                    <label for="project-cathegory"><span class="glyphicon glyphicon-list" aria-hidden="true"></span>  Kategoria</label>
                     <select class="select-cathegory" name="project-cathegory" id="project-cathegory">
                         {% if cathegories %}
                             {% for cat in cathegories %}
@@ -31,21 +31,21 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="project-short-desc">Krótki opis projektu</label>
+                    <label for="project-short-desc"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Krótki opis projektu</label>
                     <input type="text" class="form-control" name="project-short-desc" id="project-short-desc"
                            placeholder="Krótki opis projektu" required>
                 </div>
 
                 <div class="form-group">
-                    <label for="project-text">Treść projektu</label>
+                    <label for="project-text"><span class="glyphicon glyphicon-text-size" aria-hidden="true"></span> Treść projektu</label>
                     <textarea class="form-control" name="project-text" id="project-text" rows="18" required></textarea>
                 </div>
 
 
                 <div id="component-list" class="form-group">
-                    <label for="component">Elementy wykorzystane w projekcie</label>
+                    <label for="component"><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span> Elementy wykorzystane w projekcie</label>
                     <button type="button" class="btn btn-sm btn-success btn-add-component" id="btndodaj"
-                            onclick='addInput("componentContainer")'>Dodaj
+                            onclick='addInput("componentContainer")'> <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Dodaj
                     </button>
 
                     <div class="row input-separated">
@@ -55,13 +55,50 @@
 
 
                 <div class="form-group input-separated">
-                    <label for="project-tags">Tagi</label>
+                    <label for="project-tags"><span class="glyphicon glyphicon-tags" aria-hidden="true"></span> Tagi</label>
                     <input type="text" class="form-control" name="project-tags" id="project-tags" placeholder="Tagi">
                 </div>
 
-                <button type="submit" class="btn btn-primary">Dodaj projekt</button>
+                <div class="form-group input-separated">
+                    <button type="submit" class="btn btn-primary">Dodaj projekt</button>
+                </div>
             </form>
 
+        </div>
+
+    <div class="col-md-4">
+            <div class="panel panel-info panel-latest-projects-small">
+                <div class="panel-heading">Ostatnio dodane</div>
+
+                <div class="panel-body-small">
+                    {% if latest_projects_list %}
+                        {% for project in latest_projects_list %}
+                            <a href="{% url 'showproject' project.id %}">
+                                <div class="projectContainer">
+                                    <div class="project-small">
+
+                                            <div class="projectTitle">
+                                                <div class="descTitle">
+                                                    {{ project.title }}
+                                                </div>
+                                            </div>
+                                            <div class="projectShortDesc">
+                                                <div class="descShortText">
+                                                    {{ project.short_description }}
+                                                </div>
+                                            </div>
+
+                                        <div class="projectCathegory">
+                                            {{ project.cathegory }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        {% endfor %}
+                    {% endif %}
+
+                </div>
+            </div>
         </div>
     </div>
 

@@ -24,9 +24,11 @@ def index(request):
 
 def addproject(request):
     cathegories = Cathegory.objects.all()
+    latest_projects_list = Project.objects.order_by('-date_added')[:5]
 
     context = {
         'cathegories': cathegories,
+        'latest_projects_list': latest_projects_list,
     }
 
     template = loader.get_template('projekty/addproject.html')
@@ -83,7 +85,7 @@ def showproject(request, project_id):
         'project_text': project.text,
         'components': project.component_set.all(),
         'comments': project.comment_set.all(),
-        'tags': project.tag_set
+        'tags': project.tag_set.all()
     }
 
     template = loader.get_template('projekty/showproject.html')
