@@ -173,6 +173,10 @@ class Project(models.Model):
     date_added = models.DateTimeField()
     cathegory = models.ForeignKey(Cathegory, models.DO_NOTHING)
     user = models.ForeignKey(AuthUser, models.DO_NOTHING)
+    thumbnail_url = models.CharField(max_length=250, null=True)
+
+    def __str__(self):
+        return self.title.encode('utf-8')
 
     class Meta:
         managed = False

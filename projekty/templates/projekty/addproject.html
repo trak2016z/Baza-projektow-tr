@@ -11,7 +11,7 @@
 
         <h2>Dodaj projekt</h2>
         <div class="col-md-8 project-add-form">
-            <form class="form" action="{% url 'postproject' %}" method="post">
+            <form class="form" action="{% url 'postproject' %}" method="post" enctype="multipart/form-data">
             {% csrf_token %}
                 <div class="form-group">
                     <label for="project-title"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Tytuł projektu</label>
@@ -60,7 +60,12 @@
                 </div>
 
                 <div class="form-group input-separated">
-                    <button type="submit" class="btn btn-primary">Dodaj projekt</button>
+                    <label for="project-thumbnail"><span class="glyphicon glyphicon-picture" aria-hidden="true"></span> Zdjęcie główne</label>
+                    <input type="file" name="project-thumbnail" id="project-thumbnail" placeholder="Zdjęcie główne" accept="image/gif, image/jpeg, image/png">
+                </div>
+
+                <div class="form-group input-separated">
+                    <button type="submit" class="btn btn-primary input-separated">Dodaj projekt</button>
                 </div>
             </form>
 

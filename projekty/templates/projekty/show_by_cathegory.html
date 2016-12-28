@@ -1,0 +1,22 @@
+{% extends 'projekty/main.html' %}
+{% load staticfiles %}
+
+{% block title %}
+{% endblock %}
+
+{% block precontainer %}
+
+{% endblock %}
+
+{% block container %}
+    <p>{{ cathegory.text }}</p>
+    <p>
+        {% if cathegory_projects %}
+            {% for project in cathegory_projects %}
+                <p>
+                    {{ project.title }}
+                </p>
+            {% endfor %}
+        {% endif %}
+    </p>
+{% endblock %}

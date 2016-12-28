@@ -134,3 +134,4 @@ DEFAULT_CHARSET = 'utf8'
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
 STATIC_URL = '/static/'
+MEDIA_URL = os.path.join(BASE_DIR, 'login/static/projekty/media/')
