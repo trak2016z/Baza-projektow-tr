@@ -1,4 +1,5 @@
 # coding=utf-8
+from django.db.models import Q
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect, get_object_or_404
 from django.template import loader
@@ -117,6 +118,25 @@ def show_by_cathegory(request, cathegory_id):
 
     template = loader.get_template('projekty/show_by_cathegory.html')
     return HttpResponse(template.render(context, request))
+
+
+def search(request):
+    query = request.GET['query']
+
+    matching_results_title = Project.objects.filter(title__icontains=query).distinct()
+    matching_results_desc = Project.objects.filter(short_description__icontains=query).distinct()
+    matching_results_tags = Project.objects.filter(tag__text__icontains=query).distinct()
+
+    matching_results = matching_results_title | matching_results_desc | matching_results_tags
+
+    context = {
+        'query_str': query,
+        'projects_result': matching_results,
+    }
+
+    template = loader.get_template('projekty/search.html')
+    return HttpResponse(template.render(context, request))
+
 
 
 def handle_uploaded_file(project_id, file):

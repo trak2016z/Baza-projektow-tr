@@ -8,6 +8,7 @@ urlpatterns = [
     url(r'^kategoria/(?P<cathegory_id>[0-9]+)/$', views.show_by_cathegory, name='cathegories'),
     url(r'^addproject/$', views.addproject, name='addproject'),
     url(r'^postproject/$', views.postproject, name='postproject'),
+    url(r'^search$', views.search, name='search'),
     url(r'login/', include('login.urls')),
 
 ]
