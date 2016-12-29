@@ -115,6 +115,10 @@ a {
     margin-bottom: 10px;
 }
 
+.project_large {
+	height: 170px;
+}
+
 .project-small {
     position: relative;
     border: 1px solid;

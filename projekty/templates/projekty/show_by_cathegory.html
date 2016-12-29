@@ -9,14 +9,44 @@
 {% endblock %}
 
 {% block container %}
-    <p>{{ cathegory.text }}</p>
-    <p>
+    <div class="container">
+    <h2>Wyniki dla kategorii - {{ cathegory.text }}</h2>
+    <br>
         {% if cathegory_projects %}
             {% for project in cathegory_projects %}
-                <p>
-                    {{ project.title }}
-                </p>
+                            <a href="{% url 'showproject' project.id %}">
+                                <div class="projectContainer">
+                                    <div class="project project_large">
+                                        <div class="projectPhoto">
+                                            {% if project.thumbnail_url %}
+                                                <img src="{{ project.thumbnail_url }}"/>
+                                            {% else %}
+                                                <img src="{% static 'login/assets/img/backgrounds/no_image.png' %}"/>
+                                            {% endif %}
+
+                                        </div>
+                                        <div class="projectInfo">
+                                            <div class="projectTitle">
+                                                <div class="descTitle">
+                                                    {{ project.title }}
+                                                </div>
+                                            </div>
+                                            <div class="projectShortDesc">
+                                                <div class="descShortText">
+                                                    {{ project.short_description }}
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="projectCathegory">
+                                            {{ project.cathegory }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
             {% endfor %}
+        {% else %}
+            <p>Nie dodano jeszcze żadnego projektu w tej kategorii</p>
         {% endif %}
-    </p>
+    </div>
 {% endblock %}

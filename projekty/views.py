@@ -107,7 +107,8 @@ def showproject(request, project_id):
 
 def show_by_cathegory(request, cathegory_id):
     cathegory = Cathegory.objects.get(pk=cathegory_id)
-    projects_in_cathegory = Project.objects.filter(cathegory_id=cathegory.id)
+    projects_in_cathegory = Project.objects.filter(cathegory_id=cathegory.id).order_by('-date_added')
+
 
     context = {
         'cathegory': cathegory,
