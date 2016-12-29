@@ -9,9 +9,9 @@ from django.conf import settings
 
 from django.contrib.staticfiles.templatetags.staticfiles import static
 
+from projekty import parser
 from .models import Cathegory, Project, File, Tag, Component, Comment
 from django.utils import timezone
-
 
 def index(request):
     cathegories = Cathegory.objects.all()
@@ -52,7 +52,9 @@ def postproject(request):
 
     userid = request.user.id
 
-    new_project = Project(title=project_title, short_description=project_short_desc, cathegory_id=project_cathegory, text=project_text, user_id=userid, date_added=timezone.now())
+    parsed_text = parser.parse_project(project_text)
+
+    new_project = Project(title=project_title, short_description=project_short_desc, cathegory_id=project_cathegory, text=parsed_text, user_id=userid, date_added=timezone.now())
     new_project.save()
 
     if new_project.pk is not None:

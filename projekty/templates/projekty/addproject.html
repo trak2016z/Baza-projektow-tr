@@ -38,6 +38,10 @@
 
                 <div class="form-group">
                     <label for="project-text"><span class="glyphicon glyphicon-text-size" aria-hidden="true"></span> Treść projektu</label>
+                    <div class="editor-buttons">
+                        <button id="editor-btn-header" onclick="editorBtnClick(0)" class="btn btn-default" type="button"><span class="glyphicon glyphicon-font" aria-hidden="true"></span> Nagłówek</button>
+                        <button id="editor-btn-image" onclick="editorBtnClick(1)" class="btn btn-default" type="button"><span class="glyphicon glyphicon-picture" aria-hidden="true"></span> Obrazek</button>
+                    </div>
                     <textarea class="form-control" name="project-text" id="project-text" rows="18" required></textarea>
                 </div>
 
@@ -109,5 +113,6 @@
 
 
     <script src="{% static 'login/assets/js/addproject.js' %}"></script>
+    <script src="{% static 'login/assets/js/editor.js' %}"></script>
 
 {% endblock %}
