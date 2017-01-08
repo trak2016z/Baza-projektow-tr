@@ -1,0 +1,52 @@
+{% extends 'projekty/main.html' %}
+{% load staticfiles %}
+
+{% block title %}
+{% endblock %}
+
+{% block precontainer %}
+
+{% endblock %}
+
+{% block container %}
+    <div class="container">
+    <h2>Moje projekty</h2>
+    <br>
+        {% if user_projects %}
+            {% for project in user_projects %}
+                            <a href="{% url 'showproject' project.id %}">
+                                <div class="projectContainer">
+                                    <div class="project project_large">
+                                        <div class="projectPhoto">
+                                            {% if project.thumbnail_url %}
+                                                <img src="{{ project.thumbnail_url }}"/>
+                                            {% else %}
+                                                <img src="{% static 'login/assets/img/backgrounds/no_image.png' %}"/>
+                                            {% endif %}
+
+                                        </div>
+                                        <div class="projectInfo">
+                                            <div class="projectTitle">
+                                                <div class="descTitle">
+                                                    {{ project.title }}
+                                                </div>
+                                            </div>
+                                            <div class="projectShortDesc">
+                                                <div class="descShortText">
+                                                    {{ project.short_description }}
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="projectCathegory">
+                                            {{ project.cathegory }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+            {% endfor %}
+        {% else %}
+            <p>Nie dodałeś jeszcze żadnego projektu</p>
+        {% endif %}
+    </div>
+{% endblock %}

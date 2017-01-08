@@ -95,9 +95,43 @@
 
         <div class="col-md-6">
             <div class="panel panel-info">
-                <div class="panel-heading">Najpopularniejsze projekty</div>
+                <div class="panel-heading">Najczęściej komentowane</div>
 
                 <div class="panel-body">
+                    {% if most_commented_projects %}
+                        {% for project in most_commented_projects %}
+                            <a href="{% url 'showproject' project.id %}">
+                                <div class="projectContainer">
+                                    <div class="project">
+                                        <div class="projectPhoto">
+                                            {% if project.thumbnail_url %}
+                                                <img src="{{ project.thumbnail_url }}"/>
+                                            {% else %}
+                                                <img src="{% static 'login/assets/img/backgrounds/no_image.png' %}"/>
+                                            {% endif %}
+
+                                        </div>
+                                        <div class="projectInfo">
+                                            <div class="projectTitle">
+                                                <div class="descTitle">
+                                                    {{ project.title }}
+                                                </div>
+                                            </div>
+                                            <div class="projectShortDesc">
+                                                <div class="descShortText">
+                                                    {{ project.short_description }}
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="projectCathegory">
+                                            {{ project.cathegory }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        {% endfor %}
+                    {% endif %}
                 </div>
             </div>
         </div>

@@ -11,5 +11,6 @@ urlpatterns = [
     url(r'^search$', views.search, name='search'),
     url(r'login/', include('login.urls')),
     url(r'^getcomments/$', views.getcomments, name='getcomments'),
-
+    url(r'^postcomment/$', views.postcomment, name='postcomment'),
+    url(r'^myprojects/$', views.myprojects, name='myprojects'),
 ]

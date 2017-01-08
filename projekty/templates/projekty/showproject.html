@@ -60,18 +60,19 @@
         </div>
 
     <div class="col-md-4 panel-bordered project-preview comment-section">
-        <div class="panel panel-info"  id="comment-container">
+        <div class="panel panel-info">
                 <div class="panel-heading">Komentarze</div>
 
-{#            <div class="comment-container">#}
-{#                <div class="comment-head">#}
-{#                    <div class="comment-author"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> admin</div>#}
-{#                    <div class="comment-date"><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span> 2106-12-21 13:35:34</div>#}
-{#                </div>#}
-{##}
-{#                <div class="comment-text">Bardzo dobry projekt. Sam zrobiłem coś podobnego. Pozdrawiam.</div>#}
-{#            </div>#}
-
+                <div class="form">
+                    {% csrf_token %}
+                    <div class="form-group add-comment">
+                        <label class="addcomment-label" for="add-comment-text">Dodaj komentarz</label>
+                        <textarea class="addcomment-textarea" type="text" maxlength="250" rows="4" id="add-comment-text" name="add-comment-text" required></textarea>
+                        <button id="btnAddComment" class="btn btn-add-comment">Dodaj</button>
+                    </div>
+                </div>
+            <div id="comment-container">
+            </div>
         </div>
     </div>
 
@@ -83,6 +84,7 @@
         <script>
             var proj_id = {{ project_id }};
             var commurl = "{% url 'getcomments' %}";
+            var post_comm_url = "{% url 'postcomment' %}";
         </script>
         <script src="{% static 'login/assets/js/comments.js' %}"></script>
 {% endblock %}

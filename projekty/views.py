@@ -1,5 +1,5 @@
 # coding=utf-8
-from django.db.models import Q
+from django.db.models import Count
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect, get_object_or_404
 from django.template import loader
@@ -11,6 +11,7 @@ from django.core import serializers
 
 
 from django.contrib.staticfiles.templatetags.staticfiles import static
+from django.utils.datetime_safe import strftime
 
 from projekty import parser
 from .models import Cathegory, Project, File, Tag, Component, Comment
@@ -19,10 +20,12 @@ from django.utils import timezone
 def index(request):
     cathegories = Cathegory.objects.all()
     latest_projects_list = Project.objects.order_by('-date_added')[:5]
+    most_commented_projects = Project.objects.annotate(num_comments=Count('comment')).order_by('-num_comments')[:5]
 
     context = {
         'cathegories': cathegories,
         'latest_projects_list': latest_projects_list,
+        'most_commented_projects': most_commented_projects,
     }
 
     template = loader.get_template('projekty/index.html')
@@ -114,30 +117,38 @@ def getcomments(request):
         project_id = request.POST['project_id']
         project = Project.objects.get(pk=project_id)
 
-        # response_data = {}
         comment_list = []
 
         if project is not None:
-
-            for comment in project.comment_set.all():
+            for comment in project.comment_set.all().order_by('-date_added'):
                 single_comment = {
                     'comment_id': comment.id,
                     'comment_author': comment.user.username,
                     'comment_text': comment.text,
-                    'comment_date': comment.date_added,
+                    'comment_date': strftime(comment.date_added, '%Y-%m-%d %H:%M:%S'),
                 }
                 comment_list.append(single_comment)
-
-
-            #comments = project.comment_set.all()
-            #response_data['result'] = comment_list
-            #response_data['result'] = serializers.serialize("json", comment_list)
 
             return JsonResponse(comment_list, safe=False)
         else:
             return JsonResponse("")
     else:
         return JsonResponse("")
+
+def postcomment(request):
+    if request.method == 'POST':
+        project_id = request.POST['project_id']
+        comment_text = request.POST['comment_text']
+
+        project = Project.objects.get(pk=project_id)
+        if project is not None and request.user.is_authenticated():
+            new_comment = Comment(date_added=timezone.now(), project_id=project_id, text=comment_text, user_id=request.user.id)
+            new_comment.save()
+            return JsonResponse({'result':True})
+        else:
+            return JsonResponse({'result': False})
+    else:
+        return JsonResponse({'result': False})
 
 
 def show_by_cathegory(request, cathegory_id):
@@ -153,6 +164,15 @@ def show_by_cathegory(request, cathegory_id):
     template = loader.get_template('projekty/show_by_cathegory.html')
     return HttpResponse(template.render(context, request))
 
+def myprojects(request):
+    template = loader.get_template('projekty/myprojects.html')
+    context = {}
+
+    if request.user.is_authenticated():
+        user_projects = Project.objects.filter(user_id=request.user.id)
+        context['user_projects'] = user_projects
+
+    return HttpResponse(template.render(context, request))
 
 def search(request):
     query = request.GET['query']
@@ -190,3 +210,4 @@ def handle_uploaded_file(project_id, file):
 
 def get_random_string(length):
     return ''.join(random.SystemRandom().choice(string.ascii_uppercase + string.digits) for _ in range(length))
+

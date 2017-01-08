@@ -95,6 +95,9 @@ class Comment(models.Model):
     user = models.ForeignKey(AuthUser, models.DO_NOTHING)
     project = models.ForeignKey('Project', models.DO_NOTHING)
 
+    def __str__(self):
+        return self.user.username + " | " + self.text
+
     class Meta:
         managed = False
         db_table = 'comment'
