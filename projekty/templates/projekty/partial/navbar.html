@@ -6,7 +6,7 @@
 
         {% if user.is_authenticated %}
             <p class="navbar-text navbar-right"><a href="{% url 'userlogout' %}" class="navlink"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>  Wyloguj</a></p>
-            <p class="navbar-text navbar-right"><a href="/#"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>  Moje konto</a></p>
+            <p class="navbar-text navbar-right"><a href="/#"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>  {{ user.username }}</a></p>
         {% else %}
             <p class="navbar-text navbar-right"><a href="{% url 'loginindex' %}" class="navlink">Logowanie / rejestracja</a></p>
         {% endif %}

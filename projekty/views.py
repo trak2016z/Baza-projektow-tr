@@ -3,10 +3,12 @@ from django.db.models import Q
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect, get_object_or_404
 from django.template import loader
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.urls import reverse
 import string, random
 from django.conf import settings
+from django.core import serializers
+
 
 from django.contrib.staticfiles.templatetags.staticfiles import static
 
@@ -92,6 +94,7 @@ def showproject(request, project_id):
     project = get_object_or_404(Project, pk=project_id)
 
     context = {
+        'project_id': project_id,
         'project_title': project.title,
         'project_cathegory': project.cathegory,
         'project_short_desc': project.short_description,
@@ -99,11 +102,42 @@ def showproject(request, project_id):
         'components': project.component_set.all(),
         'comments': project.comment_set.all(),
         'tags': project.tag_set.all(),
-        'user': project.user,
+        'project_author': project.user,
     }
 
     template = loader.get_template('projekty/showproject.html')
     return HttpResponse(template.render(context, request))
+
+
+def getcomments(request):
+    if request.method == 'POST':
+        project_id = request.POST['project_id']
+        project = Project.objects.get(pk=project_id)
+
+        # response_data = {}
+        comment_list = []
+
+        if project is not None:
+
+            for comment in project.comment_set.all():
+                single_comment = {
+                    'comment_id': comment.id,
+                    'comment_author': comment.user.username,
+                    'comment_text': comment.text,
+                    'comment_date': comment.date_added,
+                }
+                comment_list.append(single_comment)
+
+
+            #comments = project.comment_set.all()
+            #response_data['result'] = comment_list
+            #response_data['result'] = serializers.serialize("json", comment_list)
+
+            return JsonResponse(comment_list, safe=False)
+        else:
+            return JsonResponse("")
+    else:
+        return JsonResponse("")
 
 
 def show_by_cathegory(request, cathegory_id):

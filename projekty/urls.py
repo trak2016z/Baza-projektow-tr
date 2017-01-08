@@ -10,5 +10,6 @@ urlpatterns = [
     url(r'^postproject/$', views.postproject, name='postproject'),
     url(r'^search$', views.search, name='search'),
     url(r'login/', include('login.urls')),
+    url(r'^getcomments/$', views.getcomments, name='getcomments'),
 
 ]

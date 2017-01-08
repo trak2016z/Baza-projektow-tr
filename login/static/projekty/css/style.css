@@ -307,3 +307,42 @@ textarea {
 .glyphicon{
     margin-right: 3px;
 }
+
+.comment-section {
+    margin-top: 8px;
+}
+
+.comment-container {
+    background-color: rgba(186, 201, 229, 0.1);
+    border: 1px solid;
+    border-radius: 2px;
+    border-color: #2aabd2;
+    margin: 6px;
+    margin-bottom: 12px;
+    padding: 10px;
+}
+
+.comment-head {
+    font-weight: bold;
+    font-size: 15px;
+    color: lightslategray;
+    width: 100%;
+    display: inline-block;
+}
+
+.comment-text {
+    font-size: 14px;
+    width: 100%;
+    margin-top: 4px;
+    position: relative;
+}
+
+.comment-author {
+    position: relative;
+    float: left;
+}
+
+.comment-date {
+    position: relative;
+    float: right;
+}

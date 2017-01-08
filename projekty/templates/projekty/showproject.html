@@ -27,7 +27,7 @@
         </p>
         <p>
            <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-            Autor: {{ user.username }}
+            Autor: {{ project_author.username }}
         </p>
         <div class="col-md-8 panel-bordered project-preview">
 
@@ -43,7 +43,7 @@
 
         </div>
 
-        <div class="col-md-4">
+        <div class="col-md-4 panel-bordered project-preview">
             <div class="panel panel-info">
                 <div class="panel-heading"><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span> Elementy użyte w projekcie</div>
 
@@ -58,8 +58,31 @@
                 </div>
             </div>
         </div>
-    </div>
+
+    <div class="col-md-4 panel-bordered project-preview comment-section">
+        <div class="panel panel-info"  id="comment-container">
+                <div class="panel-heading">Komentarze</div>
+
+{#            <div class="comment-container">#}
+{#                <div class="comment-head">#}
+{#                    <div class="comment-author"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> admin</div>#}
+{#                    <div class="comment-date"><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span> 2106-12-21 13:35:34</div>#}
+{#                </div>#}
+{##}
+{#                <div class="comment-text">Bardzo dobry projekt. Sam zrobiłem coś podobnego. Pozdrawiam.</div>#}
+{#            </div>#}
+
+        </div>
     </div>
 
+    </div>
 
+{% endblock %}
+
+{% block own_js %}
+        <script>
+            var proj_id = {{ project_id }};
+            var commurl = "{% url 'getcomments' %}";
+        </script>
+        <script src="{% static 'login/assets/js/comments.js' %}"></script>
 {% endblock %}
